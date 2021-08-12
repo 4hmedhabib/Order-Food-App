@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import MealsInputForm from '../MealsInputForm';
 import classes from './MealsItem.module.css';
 
 const MealsItem = ({ meal }) => {
@@ -11,7 +12,9 @@ const MealsItem = ({ meal }) => {
 					<div className={classes.description}>{meal.description}</div>
 					<div className={classes.price}>{price}</div>
 				</div>
-				<div />
+				<div>
+					<MealsInputForm id={meal.id} />
+				</div>
 			</li>
 		</Fragment>
 	);
