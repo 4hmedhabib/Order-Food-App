@@ -1,8 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+import CartContext from '../../../store/context-store';
 import CartIcon from '../../Cart/CartIcon';
 import classes from './HeaderCartButton.module.css';
 
 const HeaderCartButton = ({ onShowCart }) => {
+	const cartCtx = useContext(CartContext);
+
+	const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+		console.log('curNumber');
+		return curNumber + item.amount;
+	}, 0);
+
 	return (
 		<Fragment>
 			<button className={classes.button} onClick={onShowCart}>
@@ -10,7 +18,7 @@ const HeaderCartButton = ({ onShowCart }) => {
 					<CartIcon />
 				</span>
 				<span>Your Cart</span>
-				<span className={classes.badge}>3</span>
+				<span className={classes.badge}>{numberOfCartItems}</span>
 			</button>
 		</Fragment>
 	);

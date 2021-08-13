@@ -6,7 +6,7 @@ const Cart = ({ onShowCart }) => {
 	const cartItems = (
 		<ul className={classes['cart-items']}>
 			{[ { id: 'c1', name: 'Canjeero Xabashi', price: 1.5, description: 'Delicious Food' } ].map((item) => (
-				<li>{item.name}</li>
+				<li key={item.id}>{item.name}</li>
 			))}
 		</ul>
 	);
