@@ -14,7 +14,6 @@ const MealsItem = ({ meal }) => {
 			amount: amount,
 			price: meal.price
 		});
-		console.log('MealItems', cartCtx.items);
 	};
 
 	return (

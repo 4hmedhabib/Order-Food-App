@@ -14,6 +14,7 @@ const Cart = ({ onShowCart }) => {
 		<ul className={classes['cart-items']}>
 			{cartCtx.items.map((item) => (
 				<CartItem
+					key={item.id}
 					item={item}
 					onRemove={removeItemHandler.bind(null, item.id)}
 					onAdd={addItemHandler.bind(null, item)}
