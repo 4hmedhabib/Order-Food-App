@@ -6,10 +6,16 @@ import MealsItem from './MealsItem/MealsItem';
 const AvailableMeals = () => {
 	const [ meals, setMeals ] = useState([]);
 	const [ isLoading, setIsLoading ] = useState(true);
+	const [ hasError, setHasError ] = useState(null);
 
 	useEffect(() => {
 		const fetchMeals = async () => {
-			const res = await fetch('https://react-http-992d0-default-rtdb.firebaseo.com/meals.json');
+			const res = await fetch('https://react-http-992d0-default-rtdb.firebaseio.com/meals.json');
+
+			if (!res.ok) {
+				throw Error('Filed to fetch data. Something Wrong!');
+			}
+
 			const resJson = await res.json();
 			const data = [];
 
@@ -24,13 +30,24 @@ const AvailableMeals = () => {
 			setMeals(data);
 			setIsLoading(false);
 		};
-		fetchMeals();
+		fetchMeals().catch((err) => {
+			setIsLoading(false);
+			setHasError(err.message);
+		});
 	}, []);
 
 	if (isLoading) {
 		return (
 			<section className={classes.MealsLoading}>
 				<p>Loading...</p>
+			</section>
+		);
+	}
+
+	if (hasError) {
+		return (
+			<section className={classes.MealsError}>
+				<p>{hasError}</p>
 			</section>
 		);
 	}

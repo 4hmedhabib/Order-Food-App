@@ -12,7 +12,7 @@ function App() {
 
 	return (
 		<CartProvider>
-			{isShow && <Cart onShowCart={showCardHandler} />}
+			{isShow && <Cart onClose={showCardHandler} />}
 			<Header onShowCart={showCardHandler} />
 			<Meals />
 		</CartProvider>
