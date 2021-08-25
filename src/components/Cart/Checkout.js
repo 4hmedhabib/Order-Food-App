@@ -40,8 +40,6 @@ const Checkout = (props) => {
 			city: enteredCityIsValid
 		});
 
-		console.log(formInputsValidity);
-
 		if (!formIsValid) {
 			return;
 		}
