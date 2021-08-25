@@ -1,2 +1,2 @@
-export { default as FetchApi } from './Api/fetch-api';
-export { default as UserInput } from './UserInput/user-input';
+export { default as useHttp } from './Api/use-http';
+export { default as useInput } from './UserInput/user-input';

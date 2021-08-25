@@ -1,4 +1,4 @@
-import UserInput from '../../hooks/UserInput/user-input';
+import { useInput } from '../../hooks/';
 import classes from './Checkout.module.css';
 
 const Checkout = (props) => {
@@ -12,7 +12,7 @@ const Checkout = (props) => {
 		inputChangeHandler: nameChangeHandler,
 		inputBlurHandler: nameBlurHandler,
 		reset: nameReset
-	} = UserInput(isEmpty);
+	} = useInput(isEmpty);
 
 	const {
 		value: enteredStreet,
@@ -21,7 +21,7 @@ const Checkout = (props) => {
 		inputChangeHandler: streetChangeHandler,
 		inputBlurHandler: streetBlurHandler,
 		reset: streetReset
-	} = UserInput(isEmpty);
+	} = useInput(isEmpty);
 
 	const {
 		value: enteredPostalCode,
@@ -30,7 +30,7 @@ const Checkout = (props) => {
 		inputChangeHandler: postalCodeChangeHandler,
 		inputBlurHandler: postalCodeBlurHandler,
 		reset: postalCodeReset
-	} = UserInput(isFivechars);
+	} = useInput(isFivechars);
 
 	const {
 		value: enteredCity,
@@ -39,7 +39,7 @@ const Checkout = (props) => {
 		inputChangeHandler: cityChangeHandler,
 		inputBlurHandler: cityBlurHandler,
 		reset: cityReset
-	} = UserInput(isEmpty);
+	} = useInput(isEmpty);
 
 	let formIsValid = false;
 

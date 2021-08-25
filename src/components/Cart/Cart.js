@@ -1,4 +1,5 @@
 import React, { Fragment, useContext, useState } from 'react';
+import { useHttp } from '../../hooks';
 import CartContext from '../../store/context-store';
 import { Modal } from '../UI/';
 import classes from './Cart.module.css';
@@ -6,9 +7,9 @@ import CartItem from './CartItem';
 import Checkout from './Checkout';
 
 const Cart = (props) => {
+	const { isSubmiting, didSubmit, func: sendRequest } = useHttp();
+
 	const [ isCheckout, setIsCheckout ] = useState(false);
-	const [ isSubmiting, setIsSubmiting ] = useState(false);
-	const [ didSubmit, setDidSubmit ] = useState(false);
 
 	const cartCtx = useContext(CartContext);
 
@@ -56,13 +57,11 @@ const Cart = (props) => {
 	);
 
 	const submitHandler = (userData) => {
-		setIsSubmiting(true);
-		fetch('https://react-http-992d0-default-rtdb.firebaseio.com/orders.json', {
+		sendRequest({
+			url: 'https://react-http-992d0-default-rtdb.firebaseio.com/orders.json',
 			method: 'POST',
-			body: JSON.stringify({ user: userData, orderItems: cartCtx.items })
+			body: { user: userData, orderItems: cartCtx.items }
 		});
-		setIsSubmiting(false);
-		setDidSubmit(true);
 		cartCtx.clearCart();
 	};
 
