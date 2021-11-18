@@ -1,4 +1,8 @@
 import { useReducer } from 'react';
+const defaultState = {
+	value: '',
+	isTouched: false
+};
 
 const stateReducer = (state, action) => {
 	if (action.type === 'INPUT') {
@@ -11,11 +15,6 @@ const stateReducer = (state, action) => {
 		return defaultState;
 	}
 	return defaultState;
-};
-
-const defaultState = {
-	value: '',
-	isTouched: false
 };
 
 const UserInput = (validateValue) => {
@@ -36,7 +35,14 @@ const UserInput = (validateValue) => {
 	const valueIsValid = validateValue(inputState.value);
 	const hasError = !valueIsValid && inputState.isTouched;
 
-	return { value: inputState.value, inputChangeHandler, inputBlurHandler, reset, isValid: valueIsValid, hasError };
+	return {
+		value: inputState.value,
+		inputChangeHandler,
+		inputBlurHandler,
+		reset,
+		isValid: valueIsValid,
+		hasError: hasError
+	};
 };
 
 export default UserInput;
